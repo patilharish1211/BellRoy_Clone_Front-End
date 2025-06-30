@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belly-Roy -LoginPage</title>
+    <link rel="stylesheet" href="login.css">
+    <link rel="icon" href="images/image.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+    <div class="contaner">
+        <div class="form-box">
+            <h1 class="title">sign up</h1>
+            <div class="underline"></div>
+            <form id="form">
+                <div class="input-group">
+                    <div class="input-field Namefield">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" placeholder="Name" id="name">
+                        <span id="nameerror" ></span>
+                    </div>
+                    <div class="input-field">
+                        <i class="fa-solid fa-at"></i>
+                        <input type="email" placeholder="email" id="email">
+                        <span id="emailerror"></span>
+                    </div>
+                    <div class="input-field">
+                        <i class="fa-solid fa-key"></i>
+                        <input type="password" placeholder="password" id="password">
+                        <span id="passworderror"></span>
+                    </div>
+                    <p><span class="text">password suggestions</span>
+                        <a>click here!</a></p>
+                </div>
+                <div class="btn-field">
+                    <button type="button" class="signupbtn" id="btnsign-htm">sign up</button>
+                    <!-- <button type="button" class="disable signinbtn ">sign in</button> -->
+                </div>
+            </form>
+        </div>
+        <div class="form-box" style="margin-left: 20px;">
+            <h1 class="title"> sign In</h1>
+            <div class="underline"></div>
+            <form id="form">
+                <div class="input-group">
+                    <div class="input-field Namefield">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" placeholder="Name" id="signin-name">
+                        <span id="namearr" ></span>
+                        
+                    </div>
+                    <div class="input-field">
+                        <i class="fa-solid fa-key"></i>
+                        <input type="password" placeholder="password" id="signin-password">
+                        <span id="passwordarr"></span>
+                    </div>
+                    <p><span class="text">password suggestions</span>
+                        <a>click here!</a></p>
+                </div>
+                <div class="btn-field">
+                    <button type="button" class="signupbtn" id="btnsignn-htm">sign In</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="login.js"></script>
+</body>
+
+</html>

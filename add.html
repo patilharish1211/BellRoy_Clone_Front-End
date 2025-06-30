@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belly-Roy - AddToCart</title>
+    <link rel="icon" href="images/image.png">
+    <link rel="icon" href="images/image.png">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+      
+    </style>
+</head>
+<body>
+    <section>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12">
+              <n+av class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                  <a class="navbar-brand" href="index.html"><img  src="https://upload.wikimedia.org/wikipedia/en/3/3f/Bellroy_logo.svg" alt="" class="img-fluid logo"></a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mt-3">
+                      <li class="nav-item tg-menu">
+                        <a class="nav-link " style="color: black;" href="#">Featured</a>
+                     
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" style="color: black;" href="f.html">Bags</a>
+                      </li>
+                      <li class="nav-item dropdown">
+                        <a class="nav-link"style="color: black;" href="#">Wallets</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" style="color: black;"href="#" >Accessories</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" style="color: black;"href="#">Tech</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link "style="color: black;" href="#">Travel</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" style="color: black;"href="#">About Us</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </nav>
+              <div class="icons d-flex m-3">
+                <a href="lo"class="nav-link" style= "color: grey;">help</a>
+                <a href=""class="nav-link" style="color: grey;">store</a>
+                <a href="login-pag.html" class="mt-2 text-secondary">
+                <i class="bi bi-person p-2"style="font-size: 18px;"></i></a>
+                <i class="bi bi-search p-2"></i>
+                <a href="add.html" class="mt-2"><i class="bi bi-cart2 p-2 text-dark"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <div id="cont"></div>
+</body>
+</html>
+
+<script>
+    function Fetchdata()
+    {
+       fetch("https://bellroy-clone-back-end.onrender.com/cart")
+  
+    .then((res)=>res.json())
+    .then((data)=>CardList(data))
+    .catch((err)=>console.log(err))
+    }
+   
+    Fetchdata()
+    function CardList(data)
+    { 
+       const store=data.map((el)=>SingleCarad(el.title,el.image,el.price,el.description,el.id))
+       // console.log(store)
+       document.getElementById("cont").innerHTML=store.join("")
+    }
+    function SingleCarad(title,image,price,description,id)
+   
+    {
+      console.log(image[1])
+       let Card=`
+       <a style="text-decoration:none; background-color:#F7F7F7;" href="description.html?title=${encodeURIComponent(title)}&image1=${encodeURIComponent(image[0])}&image2=${encodeURIComponent(image[1])}&image3=${encodeURIComponent(image[2])}&image4=${encodeURIComponent(image[3])}&image5=${encodeURIComponent(image[4])}&image6=${encodeURIComponent(image[5])}&image7=${encodeURIComponent(image[6])}&image8=${image[7]}&image9=${encodeURIComponent(image[8])}&image10=${encodeURIComponent(image[9])}&image11=${encodeURIComponent(image[10])}&image12=${encodeURIComponent(image[11])}&price=${encodeURIComponent(price)}&description=${encodeURIComponent(description)}"class="nav-link">
+        <div class="col-10  align-items-center m-auto d-flex">
+          <div class="col-5 pt-2">
+              <img src="${image[0]}" alt="" class="product-img">
+              <h6 class="ms-3 mt-5"style="color:black;">${title}</h6>
+              <h6 class=" ms-3" style="color:black;">${price}</h6>
+              <h6 class="ms-3"style="color:black;">${description}</h6>
+             </div>
+            <div class="delete"><i class="bi bi-trash3 delete text-dark" data-id=${id}></i></div>
+            </div>
+            </a>
+  
+       `;
+       return Card;
+    }
+
+    document.addEventListener("click",(e)=>{
+      if(e.target.classList.contains("delete"))
+      {
+        datapproduct(e.target.dataset.id)
+      }
+    })
+
+    function datapproduct(id)
+    {
+      fetch(`https://bellroy-clone-back-end.onrender.com/cart/${id}`,{
+        method:"DELETE",
+      })
+      .then((res)=>res.json())
+      .then((data)=>alert("delete"))
+      .catch((err)=>alert("worng"))
+    }
+  
+   </script>
